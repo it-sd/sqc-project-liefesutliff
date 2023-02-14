@@ -15,6 +15,13 @@ express()
     console.log(ejsData)
     res.render('pages/index', ejsData)
   })
+  .get('/sent', function (req, res) {
+    const ejsData = {
+
+    }
+    console.log(ejsData)
+    res.render('pages/sent', ejsData)
+  })
   .get('/health', function (req, res) {
     res.status(200).send('healthy')
   })

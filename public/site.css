@@ -1,3 +1,56 @@
 body {
+  text-align: center;
   background-color: black;
+}
+
+#header {
+  color: aliceblue;
+  text-decoration: underline;
+  font-size: 60px;
+}
+
+#contentBox {
+  margin: 70px 70px 70px 70px;
+  padding: 15px 15px 15px 15px;
+  border-radius: 15px;
+  background-color: black;
+  font-size: 22px;
+  text-align: center;
+  color: aliceblue;
+  box-shadow: 0 0 4px 5px rgb(32, 32, 32);
+}
+
+#navigation {
+  font-size: 40px;
+  border-radius: 5px;
+  border-bottom: 2px solid aliceblue;
+}
+
+a {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  font-size: 18px;
+}
+
+#emailList {
+  color: black;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 60px 5px 60px;
+  border-radius: 5px;
+  background-color: aliceblue;
+}
+
+#open {
+  display: none;
+}
+
+#openEmail {
+  box-shadow: 0 1px 4px rgb(32, 32, 32);
 }

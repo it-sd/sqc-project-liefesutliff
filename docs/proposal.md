@@ -15,3 +15,6 @@ This will require two tables: **inbox** containing emails to the user, and **sen
 ![layout](./layout.svg "layout")
 * * *
 ![site map](./site.svg "site map")
+* * *
+## ER Diagram ##
+![site map](./er.svg "site map")

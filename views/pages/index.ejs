@@ -27,9 +27,12 @@
       </div>
       <div id="open" onclick="emailToggle()">
         <div id="openEmail">
-          From: Admin | To: Bob
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In aliquam euismod orci, vel viverra justo bibendum eu. Phasellus feugiat sit amet risus vitae faucibus. Pellentesque volutpat vehicula nunc et blandit. Sed ac nulla porttitor velit convallis cursus vitae vitae nibh. Vestibulum elementum aliquet dui, ut dignissim arcu luctus sit amet. Aliquam ac elit nec purus congue gravida quis ut arcu. Aenean elementum, nulla ultrices elementum sodales, nisi metus mattis ante, vel dictum nisi enim sed lacus.</p><br>
-          click to close
+          <%_ for (const email of emails) { _%>
+            From: <%= email.sender %> | To: <%= email.recipient %><br>
+            Subject: <%= email.subject %>
+            <p><%= email.message %></p><br>
+            click to close
+          <%_ } _%>
         </div>
       </div>
     </div>

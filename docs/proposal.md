@@ -18,3 +18,8 @@ This will require two tables: **inbox** containing emails to the user, and **sen
 * * *
 ## ER Diagram ##
 ![site map](./er.svg "site map")
+* * *
+## Color Palette ##
+* The reason I chose the color palette below is that I want to keep the website simple and minimalist and I feel that the colors I have chosen fit that style.
+* I would like to keep the default Times New Roman font to keep the simple and minimalist aesthetic. As far as caps and boldness go, I will mostly keep it simple, the exception would be page titles which should be big. My website will also use professional language while staying easy to read.  
+![color palette](./colorPalette.png "color palette")

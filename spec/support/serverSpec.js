@@ -65,4 +65,41 @@ describe('email server', function () {
       shouldHave(this.results, 'message')
     })
   })
+
+  describe("POST '/submit'", function () {
+    const url = new URL('/submit', baseUrl)
+
+    it('should accept valid usernames and passcodes', async function () {
+      const data = {
+        username: 'liefesutliff',
+        password: 'securepassword'
+      }
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      expect(response.ok).toBeTrue()
+    })
+
+    it('should reject invalid usernames and passcodes', async function () {
+      const data = {
+        username: '',
+        password: 'securepassword'
+      }
+
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      expect(response.ok).toBeFalse()
+    })
+  })
 })

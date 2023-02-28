@@ -59,7 +59,7 @@ express()
     res.render('pages/sent', ejsData)
   })
   .get('/health', async function (req, res) {
-    const emails = await queryAllEmails
+    const emails = await queryAllEmails()
     if (emails != null) {
       res.status(200).send('healthy')
     } else {
@@ -72,5 +72,37 @@ express()
     }
     console.log(ejsData)
     res.render('pages/about', ejsData)
+  })
+  .get('/starred', async function (req, res) {
+    // Get the emails from the database that have been stared
+    const emails = await query('SELECT * FROM email WHERE star = true')
+    const ejsData = {
+      emails: emails
+    }
+    res.render('pages/index', ejsData)
+  })
+  .post('/star/:emailId', async function (req, res) {
+    // Update an email in the database to reflect the actions of the user. (set the "star" column value to "true")
+    try {
+      const client = await pool.connect()
+      const email = await query(`SELECT star FROM email WHERE id = ${req.params.emailId}`)
+      const isStarred = email[req.params.emailId - 1].star
+      
+      let updateSql = ''
+      
+      if (!isStarred) {
+        updateSql = `UPDATE email SET star = true WHERE id = ${req.params.emailId};`
+      } else {
+        updateSql = `UPDATE email SET star = false WHERE id = ${req.params.emailId};`
+      }
+      
+      await client.query(updateSql)
+
+      res.json({ ok: true })
+      client.release()
+    } catch (err) {
+      console.error(err)
+      res.json({ error: err })
+    }
   })
   .listen(PORT, () => console.log(`Listening on ${PORT}`))

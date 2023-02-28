@@ -18,20 +18,26 @@
     <div id="navigation">
       <a href='/'>Inbox</a>&nbsp;&nbsp;&nbsp;&nbsp;
       <a href='/sent'>Sent</a>&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href='/about'>About</a><br>
+      <a href='/about'>About</a>&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href='/starred'>Starred Emails</a><br>
     </div>
     <br>
     <div id="emailList">
       <div id="closed" onclick="emailToggle()">
         Click me to test
       </div>
-      <div id="open" onclick="emailToggle()">
+      <div id="open">
         <div id="openEmail">
           <%_ for (const email of emails) { _%>
             From: <%= email.sender %> | To: <%= email.recipient %><br>
-            Subject: <%= email.subject %>
+            Subject: <%= email.subject %> |
+            <%_ if (email.star === true) { _%>
+              <a id="star" href="javascript:starEmail(<%= email.id %>);">Starred Email</a>
+            <%_ } else { _%>
+              <a id="star" href="javascript:starEmail(<%= email.id %>);">Star Email</a>
+            <%_ } _%>
             <p><%= email.message %></p><br>
-            click to close
+            <p id="close" onclick="emailToggle()">click to close</p>
           <%_ } _%>
         </div>
       </div>
@@ -49,6 +55,32 @@
         closed.style.display = "none";
         open.style.display = "block";
       }
+    }
+    // star email funciton
+    const starEmail = async function (id) {
+      const response = await fetch(`/star/${id}`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
+      })
+
+      if (response.ok) {
+        const result = await response.json()
+        if (result.ok) {
+          if (document.querySelector('#star').innerHTML === 'Starred Email') {
+            document.querySelector('#star').innerHTML = 'Star Email'
+          } else {
+            document.querySelector('#star').innerHTML = 'Starred Email'
+          }
+          
+          return
+        }
+      }
+
+      document.querySelector('#star').innerHTML = 'Unable to star email right now'
     }
   </script>
 </body>

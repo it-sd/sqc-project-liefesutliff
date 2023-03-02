@@ -87,15 +87,15 @@ express()
       const client = await pool.connect()
       const email = await query(`SELECT star FROM email WHERE id = ${req.params.emailId}`)
       const isStarred = email[req.params.emailId - 1].star
-      
+
       let updateSql = ''
-      
+
       if (!isStarred) {
         updateSql = `UPDATE email SET star = true WHERE id = ${req.params.emailId};`
       } else {
         updateSql = `UPDATE email SET star = false WHERE id = ${req.params.emailId};`
       }
-      
+
       await client.query(updateSql)
 
       res.json({ ok: true })

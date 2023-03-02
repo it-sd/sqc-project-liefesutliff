@@ -66,6 +66,7 @@ describe('email server', function () {
     })
   })
 
+
   // Starring email functionality
   describe('starring emails', function () {
     describe('GET /starred', function () {
@@ -89,6 +90,42 @@ describe('email server', function () {
         const result = await response.json()
         expect(result.ok).toBeTrue()
       })
+    })
+
+  describe("POST '/submit'", function () {
+    const url = new URL('/submit', baseUrl)
+
+    it('should accept valid usernames and passcodes', async function () {
+      const data = {
+        username: 'liefesutliff',
+        password: 'securepassword'
+      }
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      expect(response.ok).toBeTrue()
+    })
+
+    it('should reject invalid usernames and passcodes', async function () {
+      const data = {
+        username: '',
+        password: 'securepassword'
+      }
+
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      expect(response.ok).toBeFalse()
     })
   })
 })

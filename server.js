@@ -105,4 +105,26 @@ express()
       res.json({ error: err })
     }
   })
+  .get('/profile', function (req, res) {
+    const ejsData = {
+
+    }
+    console.log(ejsData)
+    res.render('pages/profile', ejsData)
+  })
+  .post('/submit', async function (req, res) {
+    res.set({ 'Content-Type': 'application/json' })
+
+    if (req.body.username !== '' && req.body.password !== '') {
+      const client = await pool.connect()
+      const insertSql = `INSERT INTO userAccount (username, password) VALUES
+      ($1::TEXT, $2::TEXT)`
+      await client.query(insertSql, [req.body.username, req.body.password])
+      res.json({ ok: true })
+      client.release()
+    } else {
+      res.status(400).json({ ok: false })
+
+    }
+  })
   .listen(PORT, () => console.log(`Listening on ${PORT}`))

@@ -59,3 +59,25 @@ p {
 h4 {
   color: aliceblue;
 }
+
+#submitButton {
+  background-color: aliceblue; /* Green */
+  border-radius: 8px;
+  color: black;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+#sendEmail {
+  background-color: aliceblue; /* Green */
+  border-radius: 8px;
+  color: black;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/site.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <title>MMM - Compose</title>
+</head>
+<body>
+  <h1 id="header">Minimalist Mail Manager - Compose<h1>
+    <div id="contentBox">
+      <div id="navigation">
+        <a href='/'>Inbox</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href='/sent'>Sent</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href='/compose'>Compose</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href='/about'>About</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href='/profile'>Profile</a><br>
+      </div>
+      <br>
+      <h4 id="statusMessage"></h4>
+      To: <input type="text" id="recipient"><br>
+      From: <input type="text" id="sender"><br>
+      Subject: <input type="text" id="subject"><br><br>
+      Message:<br> <textarea id="message" rows="8" cols="60"></textarea><br>
+      <input type="submit" id="sendEmail" value="Send Email">
+    </div>
+
+  <script>
+    const statusMessage = document.getElementById('statusMessage')
+    const recipient = document.getElementById('recipient')
+    const sender = document.getElementById('sender')
+    const subject = document.getElementById('subject')
+    const message = document.getElementById('message')
+    const sendEmail = document.getElementById('sendEmail')
+
+    const checkIfValid = function () {
+      const isValid = true
+
+      if(recipient.value == "" || recipient.value == null){
+        return false
+      }
+      if(sender.value == "" || sender.value == null){
+        return false
+      }
+      if(subject.value == "" || subject.value == null){
+        return false
+      }
+      if(message.value == "" || message.value == null){
+        return false
+      }
+
+      return isValid
+    }
+
+    const submit = async function () {
+
+      if(checkIfValid()){
+        const statusMessage = document.querySelector('h4')
+
+        const data = {
+          recipient: recipient.value,
+          sender: sender.value,
+          subject: subject.value,
+          message: message.value
+        }
+
+        console.log(data)
+
+        const response = await fetch('/sendEmail', {
+        method: 'POST',
+        headers: {
+        Accept: 'application/json', 'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify(data)
+        })
+
+        if (response.ok) {
+          const result = await response.json()
+          if (result.ok) {
+            statusMessage.innerHTML = 'Message sent!'
+          }
+        } else {
+          statusMessage.innerHTML = 'Please fill in all fields'
+        }
+
+      }
+
+    }
+    sendEmail.addEventListener('click', (e) => submit())
+  </script>
+</body>
+</html>

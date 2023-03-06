@@ -1,7 +1,7 @@
 {
   "name": "sqc-project-liefesutliff",
   "version": "1.0.0",
-  "description": "Your name or CVTC username",
+  "description": "lsutliff",
   "main": "index.js",
   "scripts": {
     "test": "jasmine",
@@ -32,6 +32,7 @@
     "doc": "docs"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "acorn": "^8.8.2",
     "acorn-jsx": "^5.3.2",
     "ajv": "^6.12.6",
@@ -166,6 +167,7 @@
     "rimraf": "^3.0.2",
     "run-parallel": "^1.2.0",
     "safe-regex-test": "^1.0.0",
+    "selenium-webdriver": "^4.8.1",
     "semver": "^6.3.0",
     "shebang-command": "^2.0.0",
     "shebang-regex": "^3.0.0",
@@ -191,5 +193,8 @@
     "wrappy": "^1.0.2",
     "yallist": "^4.0.0",
     "yocto-queue": "^0.1.0"
+  },
+  "engines": {
+    "node": ">=14 <15"
   }
 }

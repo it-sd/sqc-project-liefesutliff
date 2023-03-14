@@ -17,12 +17,6 @@
   <h1 id="header">Minimalist Mail Manager - Inbox<h1>
   <div id="contentBox">
     <div id="navigation">
-      <a href='/'>Inbox</a>&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href='/sent'>Sent</a>&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href='/about'>About</a>&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href='/starred'>Starred Emails</a><br>
-      <a href='/profile'>Profile</a><br>
-    </div>
       <div class="dropdown">
         <button class="dropbtn">Menu
           <i class="fa fa-bars"></i>
@@ -32,7 +26,6 @@
           <a href='/sent'>Sent</a>
           <a href='/compose'>Compose</a>
           <a href='/about'>About</a>
-          <a href='/starred'>Starred Emails</a>
           <a href='/profile'>Profile</a>
         </div>
       </div>
@@ -41,18 +34,13 @@
       <div id="closed" onclick="emailToggle()">
         Click me to test
       </div>
-      <div id="open">
+      <div id="open" onclick="emailToggle()">
         <div id="openEmail">
           <%_ for (const email of emails) { _%>
             From: <%= email.sender %> | To: <%= email.recipient %><br>
-            Subject: <%= email.subject %> |
-            <%_ if (email.star === true) { _%>
-              <a id="star" href="javascript:starEmail(<%= email.id %>);">Starred Email</a>
-            <%_ } else { _%>
-              <a id="star" href="javascript:starEmail(<%= email.id %>);">Star Email</a>
-            <%_ } _%>
+            Subject: <%= email.subject %>
             <p><%= email.message %></p><br>
-            <p id="close" onclick="emailToggle()">click to close</p>
+            click to close
           <%_ } _%>
         </div>
       </div>
@@ -70,31 +58,6 @@
         closed.style.display = "none";
         open.style.display = "block";
       }
-    }
-    // star email funciton
-    const starEmail = async function (id) {
-      const response = await fetch(`/star/${id}`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({})
-      })
-
-      if (response.ok) {
-        const result = await response.json()
-        if (result.ok) {
-          if (document.querySelector('#star').innerHTML === 'Starred Email') {
-            document.querySelector('#star').innerHTML = 'Star Email'
-          } else {
-            document.querySelector('#star').innerHTML = 'Starred Email'
-          }
-          return
-        }
-      }
-
-      document.querySelector('#star').innerHTML = 'Unable to star email right now'
     }
   </script>
 </body>

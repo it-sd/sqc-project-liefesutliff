@@ -10,8 +10,7 @@ CREATE TABLE email (
   recipient TEXT NOT NULL,
   sender TEXT NOT NULL,
   subject TEXT NOT NULL,
-  message TEXT NOT NULL,
-  star boolean
+  message TEXT NOT NULL
 );
 
 CREATE TABLE emailUser (

@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="/site.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -16,11 +17,18 @@
   <h1 id="header">Minimalist Mail Manager - Profile<h1>
     <div id="contentBox">
       <div id="navigation">
-        <a href='/'>Inbox</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href='/sent'>Sent</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href='/about'>About</a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href='/profile'>Profile</a><br>
-      </div>
+        <div class="dropdown">
+          <button class="dropbtn">Menu
+            <i class="fa fa-bars"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href='/'>Inbox</a>
+            <a href='/sent'>Sent</a>
+            <a href='/compose'>Compose</a>
+            <a href='/about'>About</a>
+            <a href='/profile'>Profile</a>
+          </div>
+        </div>
       <br>
       <h4 id="statusMessage"></h4>
       Username: <input type="text" id="username"><br>

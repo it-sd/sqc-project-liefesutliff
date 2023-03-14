@@ -66,6 +66,32 @@ describe('email server', function () {
     })
   })
 
+
+  // Starring email functionality
+  describe('starring emails', function () {
+    describe('GET /starred', function () {
+      shouldBeAbove200('/starred')
+      shouldBeLessThan399('/starred')
+    })
+
+    describe('POST /star/:emailId', function () {
+      const url = new URL('/star/1', baseUrl)
+      it('should set the value in the star column equal to true if it is not currently true', async function () {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({})
+        })
+
+        expect(response.ok).toBeTrue()
+        const result = await response.json()
+        expect(result.ok).toBeTrue()
+      })
+    })
+
   describe("POST '/submit'", function () {
     const url = new URL('/submit', baseUrl)
 

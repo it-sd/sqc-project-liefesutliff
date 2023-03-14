@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/site.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <title>MMM - Inbox</title>
+</head>
+<body>
+  <h1 id="header">Minimalist Mail Manager - Inbox<h1>
+  <div id="contentBox">
+    <div id="navigation">
+      <div class="dropdown">
+        <button class="dropbtn">Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href='/'>Inbox</a>
+          <a href='/sent'>Sent</a>
+          <a href='/compose'>Compose</a>
+          <a href='/about'>About</a>
+          <a href='/profile'>Profile</a>
+        </div>
+      </div>
+    <br>
+    <div id="emailList">
+      <div id="closed" onclick="emailToggle()">
+        Click me to test
+      </div>
+      <div id="open" onclick="emailToggle()">
+        <div id="openEmail">
+          <%_ for (const email of emails) { _%>
+            From: <%= email.sender %> | To: <%= email.recipient %><br>
+            Subject: <%= email.subject %>
+            <p><%= email.message %></p><br>
+            click to close
+          <%_ } _%>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function emailToggle() {
+      var closed = document.getElementById("closed");
+      var open = document.getElementById("open");
+      if (closed.style.display === "none") {
+        closed.style.display = "block";
+        open.style.display = "none";
+      } else {
+        closed.style.display = "none";
+        open.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>

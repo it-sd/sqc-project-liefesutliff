@@ -1,0 +1,135 @@
+body {
+  text-align: center;
+  background-color: black;
+}
+
+#header {
+  color: aliceblue;
+  text-decoration: underline;
+  font-size: 60px;
+}
+
+#contentBox {
+  margin: 70px 70px 70px 70px;
+  padding: 15px 15px 15px 15px;
+  border-radius: 15px;
+  background-color: black;
+  font-size: 22px;
+  text-align: center;
+  color: aliceblue;
+  box-shadow: 0 0 4px 5px rgb(32, 32, 32);
+}
+
+a {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  font-size: 18px;
+}
+
+#emailList {
+  color: black;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 60px 5px 60px;
+  border-radius: 5px;
+  background-color: aliceblue;
+}
+
+#open {
+  display: none;
+}
+
+#openEmail {
+  color: black;
+  box-shadow: 0 1px 4px rgb(32, 32, 32);
+}
+
+h4 {
+  color: aliceblue;
+}
+
+#submitButton {
+  background-color: aliceblue; /* Green */
+  border-radius: 8px;
+  color: black;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+#sendEmail {
+  background-color: aliceblue; /* Green */
+  border-radius: 8px;
+  color: black;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/* Menu Dropdown */
+
+ .navigation {
+  font-size: 40px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.dropdown {
+  width: fit-content;
+  margin-right: auto;
+  margin-left: 0;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 40px;
+  border: none;
+  outline: none;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  color: aliceblue;
+  text-decoration: none;
+  font-size: 40px;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+} 
